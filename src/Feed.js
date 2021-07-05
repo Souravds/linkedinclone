@@ -20,9 +20,11 @@ function Feed() {
   }, [])
 
   const sendPost = (e) => {
-    e.preventDefault();
-    setposts(...posts, {name: "Hridoy", description:"Singer", message: e.target.value })
-    console.log(e)
+    db.collection('posts').add({
+      name: "Sourav das",
+      description: "Programmer",
+      message: "I am happy"
+    })
   }
   return (
     <div className="feed">
