@@ -75,3 +75,19 @@
   border-radius: 10px;
   margin-bottom: 10px;
 }
+
+.sidebar__recentItem{
+  color: gray;
+  font-size: 14px;
+  font-weight: bolder;
+  cursor: pointer;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.sidebar__recentItem:hover{
+  color: black;
+  cursor: pointer;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}

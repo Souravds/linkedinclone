@@ -35,8 +35,10 @@ function SideBar() {
 
       <div className="sidebar__bottom">
         <p>Recent</p>
-        {recentItem("prgramming")}
-        
+        {recentItem("programming")}
+        {recentItem("gaming")}
+        {recentItem("guitar playing")}
+        {recentItem("football")}
       </div>
     </div>
   )
