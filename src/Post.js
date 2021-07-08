@@ -4,11 +4,11 @@ import { Avatar } from '@material-ui/core'
 import InputOption from './InputOption';
 import { ChatOutlined, SendOutlined, ShareOutlined, ThumbUpAltOutlined } from '@material-ui/icons';
 
-function Post({photoURL, name, description, message}) {
+function Post({photoURL, name, description, message,}) {
   return (
     <div className="post">
       <div className="post__header">
-        <Avatar src={photoURL}/>
+        <Avatar src={photoURL}>{name[0]}</Avatar>
         <div className="post__info">
           <h2>{name}</h2>
           <p>{description}</p>

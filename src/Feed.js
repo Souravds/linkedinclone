@@ -6,12 +6,17 @@ import ImageIcon from '@material-ui/icons/Image';
 import { CalendarViewDay, EventNote, Subscriptions } from '@material-ui/icons';
 import Post from './Post';
 import { db } from './Firebase';
+import firebase from 'firebase';
+import { selectUser } from './features/userSlice';
+import { useSelector } from 'react-redux';
 
 function Feed() {
-  const [posts, setposts] = useState([]) 
+  const [input, setinput] = useState('');
+  const [posts, setposts] = useState([]) ;
+  const user = useSelector(selectUser);
 
   useEffect(() => {
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       setposts(snapshot.docs.map(doc => ({
         id: doc.id,
         data: doc.data()
@@ -20,11 +25,16 @@ function Feed() {
   }, [])
 
   const sendPost = (e) => {
+    e.preventDefault();
     db.collection('posts').add({
-      name: "Sourav das",
-      description: "Programmer",
-      message: "I am happy"
+      name: user.displayName,
+      description: user.email,
+      message: input,
+      photoURL: user.photoURL,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
     })
+
+    setinput('')
   }
   return (
     <div className="feed">
@@ -32,7 +42,7 @@ function Feed() {
         <div className="feed__input">
           <CreateIcon />
           <form>
-            <input type="text" />
+            <input value={input} type="text" onChange={e => setinput(e.target.value)}/>
             <button onClick={sendPost} type="submit">Send</button>
           </form>
         </div>
@@ -46,8 +56,8 @@ function Feed() {
       </div>
 
       {/* Posts */}
-      {posts.map((post) => (
-            <Post name={post.name} description={post.description} message={post.message} photoURL={post.photoURL}/>
+      {posts.map(({id, data: {name, description, message,photoURL}}) => (
+            <Post key={id} name={name} description={description} message={message} photoURL={photoURL}/>
         ))}
     </div>
   )
