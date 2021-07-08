@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { auth } from './Firebase';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import Widgets from './Widgets';
 
 function App() {
   const user = useSelector(selectUser);
@@ -44,6 +45,7 @@ function App() {
         <div className="app__body">
           <SideBar />
           <Feed />
+          <Widgets />
         </div>
         </>
       )}

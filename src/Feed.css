@@ -1,6 +1,6 @@
 .feed{
   flex: 0.4;
-  margin: 0 20px;
+  margin: 0px 20px;
 }
 
 .feed__inputContainer{
@@ -40,5 +40,4 @@
 .feed__inputOptions{
   display: flex;
   justify-content: space-evenly;
-
 }
