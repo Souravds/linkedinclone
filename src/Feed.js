@@ -9,6 +9,7 @@ import { db } from './Firebase';
 import firebase from 'firebase';
 import { selectUser } from './features/userSlice';
 import { useSelector } from 'react-redux';
+import FlipMove from 'react-flip-move';
 
 function Feed() {
   const [input, setinput] = useState('');
@@ -55,10 +56,18 @@ function Feed() {
         </div>
       </div>
 
-      {/* Posts */}
-      {posts.map(({id, data: {name, description, message,photoURL}}) => (
-            <Post key={id} name={name} description={description} message={message} photoURL={photoURL}/>
+      {/* Flipmove animation uses in Posts */}
+      <FlipMove >
+        {posts.map(({id, data: {name, description, message,photoURL}}) => (
+            <Post 
+              key={id} 
+              name={name} 
+              description={description} 
+              message={message} 
+              photoURL={photoURL}
+            />
         ))}
+      </FlipMove>
     </div>
   )
 }
